@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI毛绒玩偶产品定义（青年版）</title>
+    <meta name="description" content="智能毛绒玩偶产品定义，具备AI情绪识别、语音理解和个性化陪伴功能">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae极狐',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        accent: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            200: '#fecaca',
+                            300: '#fca5a5',
+                            400: '#f87171',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@preline/overlay@1.0.0/dist/overlay.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@preline/overlay@1.0.0/dist/overlay.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .gradient-text {
+            background-image: linear-gradient(90deg, #0ea5e9, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .dark .gradient-text {
+            background-image: linear-gradient(90deg, #38bdf8, #a78bfa);
+        }
+        
+        .dark .feature-card {
+            background-color: rgba(17, 24, 39, 0.5);
+            border-color: rgba(55, 65, 81, 0.5);
+        }
+        
+        .dark .feature-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 极狐 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(156, 163, 175, 0.3), transparent);
+        }
+        
+        .dark .section-divider {
+            background: linear-gradient(90deg, transparent, rgba(55, 65, 81, 0.5), transparent);
+        }
+        
+        .tech-spec-item {
+            transition: all 0.2s ease;
+        }
+        
+        .tech-spec-item:hover {
+            background-color: rgba(14, 165, 233, 0.1);
+        }
+        
+        .dark .tech-spec-item:hover {
+            background-color: rgba(14, 165, 233, 0.2);
+        }
+        
+        .interaction-diagram {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 1rem;
+        }
+        
+        .dark .interaction-diagram {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+        }
+        
+        .memory-feature {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+            border-left: 4px solid #8b5cf6;
+        }
+        
+        .dark .memory-feature {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+        }
+        
+        .other-feature {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            border-left: 4px solid #ef4444;
+        }
+        
+        .dark .other-feature {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-200">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <i class="fas fa-robot text-2xl text-primary-500"></i>
+                        <span class="text-xl font-bold gradient-text">AI毛绒玩偶</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#overview" class="text-sm font-medium hover:text-primary-500 transition-colors">产品概述</a>
+                    <a href="#features" class="text-sm font-medium hover:text-primary-500 transition-colors">核心功能</a>
+                    <a href="#tech-specs" class="text-sm font-medium hover:text-primary-500 transition-colors">AI技术规格</a>
+                    <a href="#hardware" class="text-sm font-medium hover:text-primary-500 transition-colors">硬件需求</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                    
+                    <button class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" id="mobile-menu-button">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#overview" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">产品概述</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">核心功能</a>
+                <a href="#tech-specs" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">AI技术规格</a>
+                <a href="#hardware" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-800">硬件需求</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-gray-800 dark:to-gray-900 opacity-50"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative py-16 md:py-24">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="gradient-text">AI毛绒玩偶</span>
+                    <span class="block text-2xl md:text-3xl font-normal mt-2 text-gray-600 dark:text-gray-300">青年版 - 您的智能情感伴侣</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    智能情绪识别 · 个性化语音交互 · 温暖触感反馈 · 长期记忆陪伴
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#features" class="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-lg">
+                        探索功能 <i class="fas fa-arrow-down ml-2"></i>
+                    </a>
+                    <a href="#hardware" class="px-6 py-3 border border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 font-medium rounded-lg transition-colors">
+                        硬件规格 <i class="fas fa-microchip ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Overview Section -->
+    <section id="overview" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb极狐">产品概述</h2>
+                    <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 md:p-8 shadow-sm border border极狐-200 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <div class="w-48 h-48 rounded-full bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center shadow-inner">
+                                <i class="fas fa-heart text-6xl text-primary-500 dark:text-primary-400"></i>
+                            </div>
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                本产品是一款智能毛绒玩偶（适合随身携带），具备AI情绪识别、语音理解、触摸反馈和长期记忆功能。玩偶可以通过声音和语境分析用户情绪，并以LED表情或音效回应，同时逐步记住用户的情感模式，提供更加个性化的陪伴体验。
+                            </p>
+                            <div class="mt-6 grid grid-cols-2 gap-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-language text-primary-500 mr-2"></i>
+                                    <span class="text-sm font-medium">多语言支持</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-wifi text-primary-500 mr-2"></i>
+                                    <span class="text-sm font-medium">WiFi/eSIM/蓝牙</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-moon text-primary-500 mr-2"></i>
+                                    <span class="text-sm font-medium">睡眠辅助</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-battery-three-quarters text-primary-500 mr-2"></i>
+                                    <span class="text-sm font-medium">5-7天续航</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">产品核心功能</h2>
+                    <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
+                </div>
+                
+                <!-- AI Emotion Feature -->
+                <div class="mb-16">
+                    <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 transition-all duration-300 shadow-sm mb-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-primary-50 dark:bg-gray-700 flex items-center justify-center mr-4">
+                                <i class="fas fa-brain text-primary-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">AI情绪感知与反馈</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2 flex items-center">
+                                    <i class="fas fa-microphone-alt text-primary-500 mr-2"></i>
+                                    声音情绪识别
+                                </h4>
+                                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                        <span>通过麦克风采集用户声音</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                        <span>AI分析语调、音量、音高及节奏，识别情绪</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                        <span>以LED表情或音效反馈，如微笑、安慰、撒娇等</span>
+                                    </极狐>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2 flex items-center">
+                                    <i class="fas fa-comments text-primary-500 mr-2"></i>
+                                    语音识别与语境理解
+                                </h4>
+                                <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                        <span>识别用户的语言内容，并结合语气分析情绪</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                        <span>适用于中文及多种海外语言（如英语、日语等）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                        <span>结合上下文分析用户长期表达的情绪模式</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Touch Interaction Feature -->
+                <div class="mb-16">
+                    <div class="feature-card bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 transition-all duration-300 shadow-sm mb-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-primary-50 dark:bg-gray-700 flex items-center justify-center mr-4">
+                                <i class="fas fa-hand-holding-heart text-primary-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">触摸感应与反馈</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="interaction-diagram p-4 flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mb-3">
+                                    <i class="fas fa-hand-paper text-primary-500 dark:text-primary-300 text-2xl"></i>
+                                </div>
+                                <h4 class="font-medium text-center">轻抚</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 text-center mt-1">LED表情变化+温柔音效（如轻哼）</p>
+                            </div>
+                            
+                            <div class="interaction-diagram p-4 flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mb-3">
+                                    <i class="fas fa-hand-rock text-primary-500 dark:text-primary-300 text-2xl"></i>
+                                </div>
+                                <h4 class="font-medium text-center">挤压</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 text-center mt-1">惊讶/害羞表情+短音效反馈</p>
+                            </div>
+                            
+                            <div class="interaction-diagram p-4 flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mb-3">
+                                    <i class="fas fa-heart text-primary-500 dark:text-primary-300 text-2xl"></i>
+                                </div>
+                                <h4 class="font-medium text-center">长按</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 text-center mt-1">模拟"依偎"感，提供震动或温度反馈</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Memory & Personalization -->
+                <div class="mb-16">
+                    <div class="feature-card memory-feature rounded-xl p-6 transition-all duration-300 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-secondary-50 dark:bg-gray-700 flex items-center justify-center mr-4">
+                                <i class="fas fa-memory text-secondary-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">记忆与个性化</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2">长期记忆功能</h4>
+                                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-secondary-500 mt-2 mr-2"></i>
+                                        <span>记录用户的互动习惯、情绪变化及常见表达方式</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-secondary-500 mt-2 mr-2"></i>
+                                        <span>AI调整玩偶性格，使反馈更符合用户情感需求</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-secondary-500 mt-2 mr-2"></i>
+                                        <span>例如：如果用户经常抱着它，玩偶可能会主动发出"撒娇"音效</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2">个性化学习</h4>
+                                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-secondary-500 mt-2 mr-2"></i>
+                                        <span>基于用户行为模式自动调整互动方式</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-secondary-500 mt-2 mr-2"></i>
+                                        <span>可设置偏好模式（如更活泼或更安静）</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-secondary-500 mt-2 mr-2"></i>
+                                        <span>支持手动调整记忆参数</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Other Features -->
+                <div>
+                    <div class="feature-card other-feature rounded-xl p-6 transition-all duration-300 shadow-sm">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-lg bg-accent-50 dark:bg-gray-700 flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-accent-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">其他功能</h3>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2">基础功能</h4>
+                                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-accent-500 mt-2 mr-2"></i>
+                                        <span>睡眠模式：在安静环境下自动调暗LED或进入"休眠"</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-accent-500 mt-2 mr-2"></i>
+                                        <span>低功耗模式：长时间未使用时自动待机</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200 mb-2">扩展功能</h4>
+                                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-accent-500 mt-2 mr-2"></i>
+                                        <span>支持固件OTA升级，持续增加新功能</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle text-xs text-accent-500 mt-2 mr-2"></i>
+                                        <span>可连接手机APP进行更多设置</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tech Specs Section -->
+    <section id="tech-specs" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">AI & 技术规格</h2>
+                    <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- AI Specs -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-microchip text-primary-500 mr-2"></i>
+                            AI技术需求
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">情绪识别模型</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">可微调，如使用Transformer或LSTM模型</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">语音识别引擎</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">本地+云端（如Whisper、小度语音识别API）</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">NLP模型</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">轻量级（如基于BERT或T5的微调模型）</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">多语言支持</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">可通过云端扩展模型，以适应不同市场</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">个性化AI模型</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">基于用户数据进行训练和调整（如使用强化学习RLHF）</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tech Specs -->
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-cogs text-primary-500 mr-2"></i>
+                            技术规格
+                        </h3>
+                        <div class="space极狐-4">
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">本地缓存+云同步</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">优化响应速度，减少存储占用</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">LED屏幕</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">128×64或更高分辨率，支持动态表情渲染</极狐>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">麦克风阵列</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">高信噪比MEMS麦克风，抗噪音干扰</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">低功耗AI芯片</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">支持本地+云端计算（如ESP32+NPU或更高）</p>
+                            </div>
+                            <div class="tech-spec-item p-3 rounded-lg">
+                                <h4 class="font-medium text-gray-800 dark:text-gray-200">存储模块</h4>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-极狐">本地2-4GB存储+云端同步</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hardware Section -->
+    <section id="hardware" class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800/50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">硬件需求</h2>
+                    <div class="w-24 h-1 bg-primary-500 mx-auto"></div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Processing Unit -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-microchip text-primary-500 mr-2"></i>
+                            处理单元
+                        </h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>低功耗AI芯片（如ESP32+NPU，或更高性能的RK3566）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>支持本地推理，并具备低功耗模式</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Sensors -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-sensor text-primary-500 mr-2"></i>
+                            传感器
+                        </h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>MEMS麦克风阵列（抗噪音干扰，支持远场拾音）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>电容式触摸传感器（多点感应）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>振动马达（增强触感反馈）</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Connectivity -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-wifi text-primary-500 mr-2"></i>
+                            连接模块
+                        </h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>WiFi 6 & eSIM模块（支持远程升级与云计算）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>低功耗蓝牙芯片（如Nordic nRF52840）</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Power Management -->
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <h3 class="text-xl font-bold mb-4 flex items-center">
+                            <i class="fas fa-battery-full text-primary-500 mr-2"></i>
+                            电源管理
+                        </h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>可充电锂电池（容量2500mAh或更高）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-xs text-primary-500 mt-2 mr-2"></i>
+                                <span>智能功耗管理芯片（如BQ极狐，支持快充）</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <i class="fas fa-robot text-2xl text-primary-500"></i>
+                    <span class="text-lg font-bold gradient-text">AI毛绒玩偶</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary-500 text-white shadow-lg hidden items-center justify-center transition-opacity duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- JavaScript -->
+    <script>
+        // 主题切换
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 检查本地存储或系统偏好
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // 切换主题
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // 移动菜单切换
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // 如果是移动菜单，点击后隐藏
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+                backToTopButton.classList.add('flex');
+            } else {
+                backToTopButton.classList.add('hidden');
+                backToTopButton.classList.remove('flex');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 懒加载图片（如果有的话）
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // 如果不支持原生懒加载，可以使用Intersection Observer
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.src = image.dataset.src;
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(image => {
+                    imageObserver.observe(image);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
