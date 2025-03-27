@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儿童AI玩具产品定义 | 智能儿童陪伴玩具</title>
+    <meta name="description" content="基于多模态AI技术的智能儿童玩具，专注于语音交互、情感陪伴、个性化学习和家长控制">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                            900: '#831843',
+                        },
+                        dark: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@1.5.0/dist/preline.min.css">
+    <style>
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #0ea5e9, #ec4899);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark .gradient-text {
+            background-image: linear-gradient(90deg, #38bdf8, #f472b6);
+        }
+        .feature-connector {
+            position: relative;
+        }
+        .feature-connector:after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: #e5e7eb;
+        }
+        .dark .feature-connector:after {
+            background-color: #4b5563;
+        }
+        @media (max-width: 768px) {
+            .feature-connector:after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 font-sans transition-colors duration-200">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-robot text-2xl text-primary-500"></i>
+                <h1 class="text-xl font-bold">儿童<span class="gradient-text font-bold">AI玩具</span></h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#overview" class="font-medium hover:text-primary-500 transition-colors">产品概述</a>
+                <a href="#features" class="font-medium hover:text-primary-500 transition-colors">核心功能</a>
+                <a href="#hardware" class="font-medium hover:text-primary-500 transition-colors">硬件需求</a>
+                <a href="#ai-models" class="font-medium hover:text-primary-500 transition-colors">AI模型</a>
+                <a href="#advantages" class="font-medium hover:text-primary-500 transition-colors">核心优势</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <button class="md:hidden" id="mobile-menu-button">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#overview" class="py-2 font-medium hover:text-primary-500 transition-colors">产品概述</a>
+                <a href="#features" class="py-2 font-medium hover:text-primary-500 transition-colors">核心功能</a>
+                <a href="#hardware" class="py-2 font-medium hover:text-primary-500 transition-colors">硬件需求</a>
+                <a href="#ai-models" class="py-2 font-medium hover:text-primary-500 transition-colors">AI模型</a>
+                <a href="#advantages" class="py-2 font-medium hover:text-primary-500 transition-colors">核心优势</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/20 dark:to-secondary-900/20 opacity-50"></div>
+        <div class="container mx-auto px-4 py-20 md:py-28 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 fade-in">
+                    智能<span class="gradient-text">儿童陪伴</span>玩具
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 fade-in animation-delay-100">
+                    基于多模态AI技术的情感化智能玩具，在玩乐中培养语言能力、社交技能和创造力
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in animation-delay-200">
+                    <a href="#features" class="px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition-colors shadow-md hover:shadow-lg">
+                        了解核心功能
+                    </a>
+                    <a href="#ai-models" class="px-6 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 font-medium rounded-lg transition-colors shadow-sm">
+                        AI技术解析
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Overview -->
+    <section id="overview" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                        <i class="fas fa-info-circle mr-3 text-primary-500"></i>
+                        产品概述
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        本产品是一款基于多模态AI技术的智能儿童玩具，专注于语音交互、情感陪伴、个性化学习和家长控制，帮助儿童在玩乐中获得情感支持、语言启蒙和社交能力训练。
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-globe text-primary-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">多AI大模型适配</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            产品接入多种AI大模型(DeepSeek、豆包、OpenAI)，适配不同地区用户需求，并支持多国语言交互。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-secondary-100 dark:bg-secondary-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-child text-secondary-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">分龄设计</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            针对3-12岁不同年龄段儿童设计差异化功能，满足各成长阶段的学习和娱乐需求。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Users -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                        <i class="fas fa-users mr-3 text-secondary-500"></i>
+                        目标用户
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        针对3-12岁儿童不同成长阶段的核心需求设计
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-blue-500">3-6</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">幼儿启蒙期</h3>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>语音互动</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>角色扮演</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>语言启蒙</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-purple-500">7-9</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">儿童成长期</h3>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>情感陪伴</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>社交训练</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>故事互动</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center mb-4">
+                                <span class="text-2xl font-bold text-pink-500">10-12</span>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-3">少年探索期</h3>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>自主学习</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>知识问答</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>创意表达</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features - Vertical Timeline Style -->
+    <section id="features" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                        <i class="fas fa-star mr-3 text-yellow-500"></i>
+                        产品核心功能
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        四大核心功能模块，全方位满足儿童成长需求
+                    </p>
+                </div>
+                
+                <div class="relative">
+                    <!-- Vertical Timeline Line -->
+                    <div class="hidden md:block absolute left-1/2 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-600 transform -translate-x-1/2"></div>
+                    
+                    <!-- Feature 1 -->
+                    <div class="relative mb-16 feature-connector">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                                <div class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-6 rounded-xl border border-gray-200 dark:border-gray-700 h-full">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-4">
+                                            <i class="fas fa-comments text-blue-500 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-semibold">语音交互 & 语言处理</h3>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                        基于NLP和TTS技术，实现自然语言交流，让AI更像一个"智能伙伴"
+                                    </p>
+                                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>多国语言适配：支持普通话、英语及其他主流语言</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>场景化语音交互：根据对话内容调整语调</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>上下文记忆：记住儿童近期对话内容</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 h-full">
+                                    <h4 class="font-medium mb-3 text-primary-500">AI需求</h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">NLP</span>
+                                            <span>自然语言处理：实现智能对话理解</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">TTS</span>
+                                            <span>语音合成：生成多情感、多角色语音</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Context AI</span>
+                                            <span>语境理解：分析儿童情绪和对话上下文</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="relative mb-16 feature-connector">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 order-1 md:order-none">
+                                <div class="bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20 p-6 rounded-xl border border-gray-200 dark:border-gray-700 h-full">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center mr-4">
+                                            <i class="fas fa-heart text-pink-500 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-semibold">情感陪伴 & 社交训练</h3>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                        提供拟人化情感交流，让AI成为儿童的长期智能玩伴
+                                    </p>
+                                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>情绪感知与反馈：分析儿童情绪并用温暖语言回应</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>长期记忆与个性化互动：记住孩子的兴趣爱好</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>角色扮演与社交引导：模仿儿童喜欢的IP角色</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 order-0 md:order-none">
+                                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 h-full">
+                                    <h4 class="font-medium mb-3 text-pink-500">AI需求</h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="bg-pink-100 dark:bg-pink-900/50 text-pink-800 dark:text-pink-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Persona AI</span>
+                                            <span>根据儿童习惯优化AI互动风格</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-pink-100 dark:bg-pink-900/50 text-pink-800 dark:text-pink-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Voice Cloning</span>
+                                            <span>模仿IP角色声音与语气</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-pink-100 dark:bg-pink-900/50 text-pink-800 dark:text-pink-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Memory AI</span>
+                                            <span>记住用户偏好，个性化互动</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="relative mb-16 feature-connector">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0">
+                                <div class="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-6 rounded-xl border border-gray-200 dark:border-gray-700 h-full">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center mr-4">
+                                            <i class="fas fa-lightbulb text-green-500 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-semibold">个性化学习 & 创意表达</h3>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                        在娱乐中激发儿童的好奇心和创造力
+                                    </p>
+                                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>智能故事生成：根据儿童输入生成专属故事</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>趣味知识问答：根据年龄调整回答方式</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>创意对话训练：角色扮演、接龙游戏等</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 h-full">
+                                    <h4 class="font-medium mb-3 text-green-500">AI需求</h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">LLM</span>
+                                            <span>大语言模型：提供个性化故事和知识问答</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Interactive AI</span>
+                                            <span>设计趣味问答、互动训练</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="relative">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-12 mb-8 md:mb-0 order-1 md:order-none">
+                                <div class="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-6 rounded-xl border border-gray-200 dark:border-gray-700 h-full">
+                                    <div class="flex items-center mb-4">
+                                        <div class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center mr-4">
+                                            <i class="fas fa-shield-alt text-orange-500 text-xl"></i>
+                                        </div>
+                                        <h3 class="text-xl font-semibold">家长控制</h3>
+                                    </div>
+                                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                        保障儿童的健康使用习惯，并提供家长监督功能
+                                    </p>
+                                    <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>支持亲子互动：促进亲子交流</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>内容筛选与管理：手动筛选适宜内容</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>使用时长控制：设定每日最大使用时间</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                            <span>安全关键词过滤：确保对话内容健康</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12 order-0 md:order-none">
+                                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl border border-gray-200 dark:border-gray-600 h-full">
+                                    <h4 class="font-medium mb-3 text-orange-500">AI需求</h4>
+                                    <ul class="space-y-2">
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Speech Filter AI</span>
+                                            <span>智能检测与屏蔽不适宜内容</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-200 text-xs font-medium px-2.5 py-0.5 rounded mr-2">Parental Dashboard</span>
+                                            <span>提供可视化管理工具</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware Requirements -->
+    <section id="hardware" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                        <i class="fas fa-microchip mr-3 text-primary-500"></i>
+                        硬件需求
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        高品质硬件配置，确保最佳用户体验
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-microphone text-blue-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">音频系统</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                                <span>高灵敏度麦克风阵列</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                                <span>先进降噪技术，减少环境噪音影响</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                                <span>高品质扬声器，支持清晰TTS语音播放</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-wifi text-green-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">连接方式</h3>
+                        </div>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>WiFi连接：用于高速数据交互</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>eSIM移动数据：无需WiFi也可联网使用</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>蓝牙：支持近距离设备连接</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Models -->
+    <section id="ai-models" class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                        <i class="fas fa-brain mr-3 text-secondary-500"></i>
+                        AI模型适配策略
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                        根据不同功能需求适配最佳AI大模型
+                    </p>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">需求</th>
+                                <th scope="col" class="px-6 py-3">适配AI大模型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">语音交互 & NLP</th>
+                                <td class="px-6 py-4">DeepSeek、OpenAI GPT、豆包等</td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">语音克隆(IP角色模仿)</th>
+                                <td class="px-6 py-4">ElevenLabs、DeepBrain</td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">多语言处理</th>
+                                <td class="px-6 py-4">Whisper、DeepSeek</td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">情绪感知</th>
+                                <td class="px-6 py-4">Context AI、情感计算模型</td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">长期记忆</th>
+                                <td class="px-6 py-4">RAG(Retrieval-Augmented Generation)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">语音过滤 & 家长管理</th>
+                                <td class="px-6 py-4">Speech Filter AI、Parental Control AI</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Advantages -->
+    <section id="advantages" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                        <i class="fas fa-trophy mr-3 text-yellow-500"></i>
+                        核心优势
+                    </h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-random text-purple-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">多AI大模型适配</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            可灵活切换不同地区AI，满足全球化需求，确保各地区用户都能获得最佳体验。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-copyright text-pink-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">IP联名拓展</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            IP角色语音克隆，支持动漫/影视角色互动，增强儿童兴趣和参与度。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-child text-blue-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">长期陪伴 & 学习成长</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            通过AI记忆优化互动，形成个性化玩伴体验，伴随儿童成长各阶段需求。
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-orange-500 text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">家长控制系统</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            保障儿童健康使用，避免沉迷或接触不良内容，让家长放心。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 p-3 bg-primary-500 text-white rounded-full shadow-lg hover:bg-primary-600 transition-colors hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/preline@1.5.0/dist/preline.min.js"></script>
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved user preference or use system preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add fade-in animation to elements when they come into view
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            element.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-500');
+            fadeInObserver.observe(element);
+        });
+    </script>
+</body>
+</html>
